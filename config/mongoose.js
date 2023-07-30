@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-<<<<<<< HEAD:configs/db_connection.js
+
 
 mongoose.connect('mongodb+srv://rajatjain3276:ueK756kX4CKRQCjt@cluster0.ebg6cql.mongodb.net/?retryWrites=true&w=majority');// connecting to db
 =======
