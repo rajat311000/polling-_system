@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 
 
 
-mongoose.connect('mongodb+srv://rajatjain3276:ueK756kX4CKRQCjt@cluster0.ebg6cql.mongodb.net/?retryWrites=true&w=majority');// connecting to db
-=======
+mongoose.connect('mongodb+srv://rajatjain3276:ueK756kX4CKRQCjt@cluster0.ebg6cql.mongodb.net/?retryWrites=true&w=majority');// connecting to database
 // const url =mongoose.connect('mongodb://127.0.0.1:27017/myappx') ; // mongoodb url
 mongoose.connect('mongodb+srv://rajatjain3276:ueK756kX4CKRQCjt@cluster0.ebg6cql.mongodb.net/?retryWrites=true&w=majority'); 
->>>>>>> edf670a956d706adbae2b44f8c420cd17c6ad1c2:config/mongoose.js
+
 
 const db = mongoose.connection; // getting connection of db
 
