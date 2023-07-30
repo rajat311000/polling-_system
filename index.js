@@ -3,7 +3,7 @@ const express = require('express');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const port = 8000;
-const db = require('./configs/db_connection');
+const db = require('./config/mongoose');
 
 const app = express(); // getting instance of express server into app constant
 
