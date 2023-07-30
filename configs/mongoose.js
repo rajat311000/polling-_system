@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // const url =mongoose.connect('mongodb://127.0.0.1:27017/myappx') ; // mongoodb url
-mongoose.connect(''mongodb+srv://rajatjain3276:ueK756kX4CKRQCjt@cluster0.ebg6cql.mongodb.net/?retryWrites=true&w=majority'); 
+mongoose.connect('mongodb+srv://rajatjain3276:ueK756kX4CKRQCjt@cluster0.ebg6cql.mongodb.net/?retryWrites=true&w=majority'); 
 
 const db = mongoose.connection; // getting connection of db
 
