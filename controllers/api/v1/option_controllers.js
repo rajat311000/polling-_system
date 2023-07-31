@@ -13,9 +13,9 @@ module.exports.create = async function (req, res) {
     try {
 
         const questionId = req.params.id;
-        const { text } = req.body;
+        const {text} = req.body;
 
-        if (!questionId || !text) {
+        if (!questionId ) {
             return res.status(404).json({
                 message: 'Empaty Question id or option text',
                 status: 'failure',
