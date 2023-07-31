@@ -128,7 +128,7 @@ module.exports.getQuestion = async function (req, res) {
             });
         };
 
-        await question.populate({ path: 'options', select: '-question_id' });
+        // await question.populate({ path: 'options', select: '-question_id' });
 
         return res.status(200).json({
             message: 'question fetched',
