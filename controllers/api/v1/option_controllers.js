@@ -13,7 +13,7 @@ module.exports.create = async function (req, res) {
     try {
 
         const questionId = req.params.id;
-        const { text } = req.body;
+        const text = req.body.text;
 
         if (!questionId || !text) {
             return res.status(404).json({
