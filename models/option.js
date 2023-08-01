@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const question = require('question');
+
 
 /**
  * option schema containing
