@@ -15,13 +15,13 @@ A polling system API is an application programming interface that allows develop
 
 To install all the dependences of the project, run the following command:
 
-    git clone https://github.com/rajat/Polling-api-system.git
+    
     npm install
     npm start
 
 
 #### Source Code:
- - Link : https://github.com/rajat/Polling-api-system
+ - Link : https://github.com/rajat311000/Polling-api-system
 
 
 #### Deployment Link:
