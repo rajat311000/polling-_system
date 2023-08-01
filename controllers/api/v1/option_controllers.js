@@ -8,49 +8,65 @@ const Option = require('../../../models/option');
  * check if quetionsId is valid or not if question id is valid then we create an option
  * assign link to vote dynamicaly and push option id to the question's options array
  */
-module.exports.create = (req, res) => {
-    // console.log("Question Id", req.params.id);
-    // console.log("Option ", req.body.option);
+module.exports.create = async function (req, res) {
 
-    const questionId = req.params.id;
+    try {
 
-    // Create a new option with the text from the request body
-    Options.create({ text: req.body.option })
-        .then((option) => {
-        if (option) {
-            console.log("Successfully Created Option!!");
+        const questionId = req.params.id;
+        const { text } = req.body;
 
-            // console.log("option._id: ", option._id);
-
-            //Set the link_to_vote field for the option and save it
-            // option.link_to_vote = `http://localhost:8000/api/v1/options/${option._id}/add_vote`;
-            option.link_to_vote = `https://poll-system-dh5e.onrender.com/api/v1/options/${option._id}/add_vote`;
-            option.save();
-
-            Questions.findById(questionId)
-            .then((question) => {
-                if (!question) {
-                return res.status(404).json({ message: "Question not found" });
-                }
-
-                question.options.push(option._id);
-                question.save();
-
-                res
-                .status(200)
-                .json({ message: "Successfully created option!", question });
-            })
-            .catch((err) => {
-                console.log("Error finding question:", err);
-                res.status(500).json({ message: "Internal Server Error" });
+        if (!questionId || !text) {
+            return res.status(404).json({
+                message: 'Empaty Question id or option text',
+                status: 'failure',
+                data: []
             });
         }
+
+        const question = await Question.findById(questionId);
+
+        if (!question) {
+            return res.status(404).json({
+                message: 'Invalid Question id',
+                status: 'failure',
+                data: []
+            });
+        }
+
+
+        const baseUrl = `https://polling-api-system-git-master-shakti1590.vercel.app/`
+
+        const option = await Option.create({ 'text': text, 'question_id': question._id });
+        option.link_to_vote = `${baseUrl}/api/v1/options/${option.id}/add_vote`;
+        await option.save();
+
+        if (!option) {
+            throw new Error('unable to create option');
+        }
+
+
+        question.options.push(option._id);
+        await question.save()
+
+        return res.status(200).json({
+            message: 'Option created',
+            status: 'successful',
+            data: [option]
+        });
+
+
+    } catch (error) {
+
+        console.log('CREATE OPTION ERROR: ', error);
+
+        return res.status(500).json({
+            message: 'Internal Server Error',
+            status: 'failure',
+            data: []
         })
-        .catch((err) => {
-        console.log("Error creating option:", err);
-        res.status(500).json({ message: "Internal Server Error" });
-    });
-};
+    }
+
+}
 
 /**
  * delete the option 
